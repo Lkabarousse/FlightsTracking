@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  flightstracking.web:
+    build: 
+      context: .
+      dockerfile: FlightsTracking.Web\Dockerfile
+    image: ${DOCKER_REGISTRY-}flightstracking.web
+
+  flightstracking.apis:
+    build:
+      context: .
+      dockerfile: FlightsTracking.Apis\Dockerfile
+    image: ${DOCKER_REGISTRY-}flightstrackingapis
+#services:
+#  flightstracking.web:
+#    image: ${DOCKER_REGISTRY-}flightstrackingweb
+#    build:
+#      context: .
+#      dockerfile: FlightsTracking.Web\Dockerfile

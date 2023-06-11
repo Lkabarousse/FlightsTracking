@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+ flightstracking.apis:
+    container_name: "flightapi"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    hostname: flightapi
+    networks:
+        fly_network:
+    ports:
+      - "5555:80"
+
+ flightstracking.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+        fly_network:
+    ports:
+      - "4444:80"
+    depends_on:
+      - flightstracking.apis
+ 
+networks:
+    fly_network:
+        name: "fly_network"
+        ipam:
+            config:
+                - subnet: "10.0.0.1/16"
+                  gateway: "10.0.0.2"
